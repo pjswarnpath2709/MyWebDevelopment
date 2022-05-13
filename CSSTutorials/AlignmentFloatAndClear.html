@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alignment,Float and Clear </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,900;1,100&family=Roboto:wght@100&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: auto;
+            padding: auto;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 900px;
+            border: 4px solid purple;
+            background-color: sandybrown;
+            margin: auto;
+        }
+
+        #fruits {
+            float: left;
+            width: 48%;
+        }
+
+        #computer {
+            float: right;
+            width: 48%;
+        }
+
+        #stationary {
+            /* float: left; */
+            clear: both;
+            width: 99%;
+        }
+
+        h3 {
+            font-weight: bolder;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: black;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h1 {
+            width: 50%;
+            margin: auto;
+        }
+
+        .items {
+            border: 2px solid green;
+            margin: 12px 4px;
+            padding: 12px 3px;
+            background-color: wheat;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome To my store</h1>
+        <div class="items" id="fruits">
+            <h3>Fruits</h3>
+            <p id="fruitspara" class="para">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit suscipit
+                eaque nesciunt culpa animi explicabo amet maxime praesentium id libero sed, reprehenderit distinctio
+                illum at assumenda eos quos, consequuntur consequatur?
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum accusamus fugit et ea voluptatibus eaque
+                corrupti illum. Minima dolorum quae obcaecati animi sed reprehenderit non error, eligendi corrupti,
+                repudiandae est?
+            </p>
+        </div>
+        <div class="items" id="computer">
+            <h3>Computer</h3>
+            <p id="computerpara" class="para">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit suscipit
+                eaque nesciunt culpa animi explicabo amet maxime praesentium id libero sed, reprehenderit distinctio
+                illum at assumenda eos quos, consequuntur consequatur?
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas, fugit? Impedit vitae doloremque,
+                minima porro amet incidunt sunt, dolorem quam illum accusantium sequi dolore libero tempore nulla nihil
+                accusamus doloribus.
+            </p>
+        </div>
+        <div class="items" id="stationary">
+            <h3>Stationary</h3>
+            <p id="stationarypara" class="para">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit suscipit
+                eaque nesciunt culpa animi explicabo amet maxime praesentium id libero sed, reprehenderit distinctio
+                illum at assumenda eos quos, consequuntur consequatur?
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

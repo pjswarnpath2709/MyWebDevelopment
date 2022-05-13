@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning box Model in CSS</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .container {
+            /* We can set margin/padding for  top, bottom, left and right like this */
+            /* padding-top: 79px;
+            padding-bottom: 79px;
+            padding-left: 34px; 
+            padding-right: 79px;*/
+
+            /* margin-top: 3px;
+            margin-bottom: 5px;
+            margin-left: 34px;
+            margin-right:5px ; */
+
+            /* margin = top right bottom left;  */
+            /* padding = top right bottom left;  */
+
+            /* padding: 23px 56px 6px 78px;   */
+            /* margin: 23px 56px 6px 78px;   */
+
+            /* padding: y(top/bottom) x(left/right); */
+            /* margin: y(top/bottom) x(left/right); */
+
+            background-color: burlywood;
+            border: 3px solid black;
+            padding: 9px;
+            margin: 34px;
+            border-radius: 23px;
+            box-sizing: border-box;
+        }
+
+        .conatainer2 {
+            padding: 100px;
+            margin-left: 150px;
+            height: 600px;
+            width: 800px;
+            border: 4px solid red;
+            background-color: rosybrown;
+            box-sizing: content-box;
+            border-radius: 13px;
+        }
+
+    </style>
+</head>
+<div class="container">
+    <h3>
+        This is the First heading which is stored in div
+    </h3>
+    <p id="firstpara">
+        This is first paragraph. <br>
+        we are going to learn a new BOX model in CSS.
+        <br>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae a illo fugiat ipsa est! Eligendi omnis numquam
+        sint ab doloremque repudiandae quibusdam et earum blanditiis, recusandae facilis autem molestias, accusantium
+        laborum quam consectetur ipsa?
+    </p>
+</div>
+<div class="container">
+    <h3>
+        This is the Second heading which is stored in div
+    </h3>
+    <p id="secondpara">
+        This is second paragraph. <br>
+        we are going to learn a new BOX model in CSS.
+        <br>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae a illo fugiat ipsa est! Eligendi omnis numquam
+        sint ab doloremque repudiandae quibusdam et earum blanditiis, recusandae facilis autem molestias, accusantium
+        laborum quam consectetur ipsa?
+    </p>
+</div>
+<div class="container">
+    <h3>
+        This is the Third heading which is stored in div
+    </h3>
+    <p id="thirdpara">
+        This is Third paragraph. <br>
+        we are going to learn a new BOX model in CSS.
+        <br>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae a illo fugiat ipsa est! Eligendi omnis numquam
+        sint ab doloremque repudiandae quibusdam et earum blanditiis, recusandae facilis autem molestias, accusantium
+        laborum quam consectetur ipsa?
+    </p>
+</div>
+<div class="conatainer2">
+    <h3>This is box model's Image: </h3>
+    <img id="image" src="https://media.geeksforgeeks.org/wp-content/uploads/box-model-1.png" alt="image of boxmodel">
+</div>
+
+<body>
+
+</body>
+
+</html>
