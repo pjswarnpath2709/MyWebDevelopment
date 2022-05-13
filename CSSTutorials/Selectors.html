@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selectors in CSS</title>
+    <style>
+        /* form here the css start  */
+
+        /* element selector  */
+        p{
+            border: 2px solid red;;
+        }
+
+        /* id selector  */
+        #redele {
+            color: brown;
+        }
+
+        /* class selector  */
+        .yellowborder {
+            border-color: yellow;
+        }
+
+        .whitetext {
+            color: cyan;
+        }
+
+        .redbg {
+            background-color: red;
+        }
+
+        /* grouping selector  */
+        footer,
+        span {
+            color: pink;
+        }
+
+        /* here the css ends  */
+
+    </style>
+</head>
+
+<body>
+    <h3>
+        <strong>CSS SELECTORS</strong>
+    </h3>
+    <p id="redele" class="redbg">
+        This is a simple paragraph and god knbows what is it doing
+    </p>
+    <p class="yellowborder">
+        This is a simple paragraph and god knbows what is it doing
+    </p>
+    <p class="redbg whitetext">
+        This is a simple paragraph and god knbows what is it doing
+    </p>
+
+    <div>
+        <p class="yellowborder whitetext">
+            This is a simple paragraph and god knbows what is it doing
+        </p>
+    </div>
+    <span>this is a span </span>
+    <footer>this ia another footer first wala delete hogya</footer>
+</body>
+
+</html>

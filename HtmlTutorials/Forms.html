@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms</title>
+  </head>
+  <body>
+    <h1>This is Form tutorials</h1>
+    <form action="backend.php">
+      <label for="myName">Name: </label>
+      <div><input type="text" name="myName" id="myName" /></div>
+
+      <label for="myRole">Role:</label>
+      <div><input type="text" name="myRole" id="myRole" /></div>
+
+      <label for="myEmail">Email:</label>
+      <div><input type="email" name="myEmail" id="myEmail" /></div>
+
+      <div>Date : <input type="date" name="myDate" /></div>
+
+      <div>Bonus: <input type="number" name="myBonus" /></div>
+
+      <div>Icecream: <input type="checkbox" name="myicecream" /></div>
+
+      <div>
+        Gender: <br />
+        male: <input type="radio" name="myGender" /> <br />
+        femlae:<input type="radio" name="myGender" />
+      </div>
+
+      <div>Submit_it:<input type="submit" value="Submit now" /></div>
+
+      <div><input type="reset" value="reset it" /></div>
+
+      <div>
+        write about yourself :<textarea
+          name="myText"
+          cols="2000"
+          rows="10"
+        ></textarea>
+      </div>
+
+      <label for="car">car:</label>
+      <div>
+        <select name="myCar" id="car">
+          <option value="ind" selected>Indica</option>
+          <option value="swf">Swift</option>
+        </select>
+      </div>
+      
+    </form>
+  </body>
+</html>

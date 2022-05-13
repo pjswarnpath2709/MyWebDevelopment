@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ids and Classes in HTML</title>
+</head>
+<!-- here the head ends  -->
+
+<!-- here the body starts  -->
+
+<body>
+    <h3>IDs and Classes Tutorial</h3>
+
+    <!-- ek page mein ek id replecate nahi ho sakti  -->
+    <!-- ids are given to uniquely identify the elements in the elements -->
+
+    <div id="mainBox" class="redbg">This is a mainBox</div>
+
+    <!-- class is given to group items and do apply common properties on a given elements -->
+    <!-- classes can be multiple and can be used for multiple classes  -->
+    <!-- if a iten wants multiple classes then it should be done using spaces -->
+    <div id="mainbox2" class="redbg blackborder">
+        This is second mainBox with diffrent id but having multiple classes
+    </div>
+
+    <span id="spanbox" class="blackborder">this is span with diffrent id but iheriting same class as mainbox 2
+    </span><br />
+
+    <!-- Useful emmets  -->
+    <!-- the . symbol will specify a class of an element and the # will define the id of an element -->
+
+    <!-- span.redbg will generate a span with class as redbg  -->
+    <span class="redbg">This will generate a span with class redbg </span><br />
+
+    <!-- span#spanbox2 will generate a span with id a as spanbox2  -->
+    <span id="spanbox2">This will generate a span with id spanbox2 </span><br />
+
+    <!-- span.blackborder#spanbox3 will generate a span with id a as spanbox3 and class as blackborder class   -->
+    <span class="blackborder" id="spanbox3">This will genrate the combination of both class and id </span><br />
+
+    <!-- div.redbg.blackborder.anotherclass#mainbox3 will genrerate the thing given below -->
+    <div class="redbg blackborder anotherclass" id="mainbox3">
+        This is another div block
+    </div>
+
+    <!-- Emmet takes div block as default  -->
+    <!-- for eg if you will use .blackborder#mainbox4 this will generate a div with class and id as given  -->
+    <div class="blackborder" id="mainbox4">
+        Hence the emmet uses div as the default block got it?
+    </div>
+
+    <!-- creating mukltiple elements with emmet for eg  -->
+    <span class="class1 class2 class3">first</span>
+    <span class="class1 class2 class3">second</span>
+    <span class="class1 class2 class3">third</span>
+    <span class="class1 class2 class3">fourth</span>
+</body>
+<!-- here the body ends -->
+
+</html>
