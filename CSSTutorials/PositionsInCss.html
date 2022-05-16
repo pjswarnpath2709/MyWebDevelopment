@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positions Absolute ,Relative,Fixed and sticky</title>
+    <style>
+        /* CSSposition : static(by default),
+        absolute,
+        relative,
+        fixed,
+        sticky  */
+        body {
+            background-color: khaki;
+        }
+
+        .box {
+            border: 2px solid red;
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            margin: 2px;
+        }
+
+        .container {
+            border: 2px solid red;
+            height: 3444px;
+        }
+
+        #box3 {
+            /* relative :relative to it's normal postion in the page and will leave a gap  */
+            /* position: relative; */
+
+            /* absolute  :relative to it's parent postion in the page  */
+            /* position: absolute; */
+            /* top: 34px;
+            left: 34px; */
+
+            /* fixed : positions relative to the browser window  */
+            /* position: fixed;
+            right: 80px;
+            bottom: 4px; */
+
+            position: sticky;
+            top: 4px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box" id="box1">
+            <h3>BOX 1</h3>
+        </div>
+        <div class="box" id="box2">
+            <h3>BOX 2</h3>
+        </div>
+        <div class="box" id="box3">
+            <h3>BOX 3</h3>
+        </div>
+        <div class="box" id="box4">
+            <h3>BOX 4</h3>
+        </div>
+    </div>
+
+</body>
+
+</html>
