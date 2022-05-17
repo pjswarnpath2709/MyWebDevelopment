@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visibility property and z-Indexing </title>
+
+    <style>
+        .box {
+            width: 170px;
+            height: 170px;
+            border: 2px solid black;
+        }
+
+        #box1 {
+            color: white;
+            background-color: red;
+            position: relative;
+            top: 45px;
+            z-index: 34;
+            /*
+            jiska z-index jyada rahega woh upar rahega aur jiska kam rahega woh kam rahega
+            */
+            /* visibility: hidden; */
+            /* box ko hide hi kar dega */
+
+        }
+
+        #box2 {
+            color: white;
+            background-color: darkcyan;
+            visibility: visible;
+            position: relative;
+            top: -12px;
+
+            /*
+            display:none; -- > 
+            box ko gayab bhi karega aur uski jagah bhi kha jayega
+            */
+
+            /*
+            z-indexing will work only on the position : relative ,absolute ,fixed ,sticky
+            */
+        }
+
+
+        #box3 {
+            color: white;
+            background-color: navy;
+        }
+
+        #box4 {
+            color: white;
+            background-color: brown;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="box" id="box1">this is box1</div>
+    <div class="box" id="box2">this is box2</div>
+    <div class="box" id="box3">this is box3</div>
+    <div class="box" id="box4">this is box4</div>
+</body>
+
+</html>

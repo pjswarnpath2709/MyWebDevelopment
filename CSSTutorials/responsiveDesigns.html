@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive websites Using Sizes and Units</title>
+    <style>
+        html {
+            font-size: 25px;
+        }
+
+        .container {
+            height: 100vh;
+            width: 100vw;
+            border: 2px solid black;
+            font-size: 10px;
+        }
+
+        h1 {
+            color: magenta;
+            text-align: center;
+        }
+
+
+        #item1 {
+            color: blue;
+            font-size: 6em;
+            /*em means relative to parent multiply the size */
+            padding: 2em;
+            /* agar font size change kardiya hai current item ka them multiple of font-size change hoga */
+        }
+
+        #item2 {
+            font-size: 3rem;
+            padding: 3rem;
+            /*
+            rem means relative to the root element i.e. the html tag ,
+            every element should get size according to the root element's multiple 
+            */
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="item1">First Heading</h1>
+        <h1 id="item2">Second Heading</h1>
+        <h1 id="item3">Third Heading</h1>
+        <h1 id="item4">Fourth Heading</h1>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More on the Selectors</title>
+
+    <style>
+        h1 {
+            background-color: red;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        div p {
+            background-color: brown;
+            color: white;
+        }
+
+        /* div li p{
+            background-color: orange;
+            color: brown;
+        } */
+
+        /*jab apan ko direct child ke upar cheeje lagani ho */
+        /* div>p {
+            background-color: black;
+            color: red;
+        } */
+
+        /*jiska pichla sibling ek div ho us paragraph ko pakdo */
+        div+p {
+            background-color: black;
+            color: red
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>This is old selectors and we will fight it!</h1>
+    <div class="container">
+        <div class="row">
+            <ul>
+                <li>
+                    <p>this is the inner most paragraph</p>
+                </li>
+            </ul>
+            <p>this is a paragraph</p>
+        </div>
+        <p>this is another paragrpah </p>
+    </div>
+    <p>this is outer most paragrpah</p>
+
+</body>
+
+</html>

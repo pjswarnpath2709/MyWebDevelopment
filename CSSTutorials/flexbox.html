@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox will save me!</title>
+    <style>
+        .container {
+            height: 544px;
+            width: 100%;
+            border: 2px solid black;
+
+            /* initialise a container as a flex box  */
+            display: flex;
+            /* flex properties for flex container */
+            flex-direction: row;
+            /* by default value of the flex-direction is row  */
+            /* flex-direction: column; */
+            /* flex-direction: column-reverse; */
+            /* flex-direction: row-reverse; */
+
+
+            /* for responsive website we use flex wrap */
+            /*by default value of the wrap is no-wrap */
+            /* flex-wrap: wrap; */
+
+            /* ek line mein dono likh do  */
+            /* flex-flow: row-reverse wrap; */
+
+
+            /* this will justify the conntent in horizontal direction */
+            /* justify-content: center; */
+            /* justify-content: space-between; */
+            /* justify-content: space-evenly; */
+            /* justify-content: space-around; */
+
+
+            /* this will justify or align the item verically  */
+            /* align-items: center; */
+            /* align-items: flex-end; */
+            /* align-items: flex-start; */
+            /* vertical even gaps is called as strech */
+            /* align-items: stretch; */
+
+
+        }
+
+        .item {
+            background-color: tomato;
+            width: 100px;
+            height: 100px;
+            padding: 4px;
+            margin: 10px;
+            border: 4px solid navy;
+        }
+
+        #item1 {
+            /* flex properties for flex container */
+
+            /* jiska order bada hoga woh last mein jayega */
+            /* order: 2; */
+
+            /* jiska grow bada hoga woh utni teji se grow karega jab screen size badega  */
+            /* flex-grow: 3; */
+
+            /* jiska shrink bada hoga woh utni teji se shrink karega jab screen size gahtega   */
+            /* flex-shrink: 2; */
+
+            /* jab flex-direction: row hoga tab flex basis will control width warna woh control karaga  height */
+            flex-basis: 240px;
+        }
+
+        #item2 {
+            /* order: 0; */
+            /* flex-grow: 2; */
+            /* flex-shrink: 3; */
+
+            flex-basis: 300px;
+        }
+
+        #item3 {
+            /* order: 40; */
+            flex-basis: 500px;
+
+            /* this will align a particular item according to the given positin */
+            /* align-self: flex-end; */
+            /* align-self: flex-start; */
+            /* align-self: center; */
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>this is flexbox tutorial</h1>
+    <div class="container">
+        <div class="item" id="item1">first box</div>
+        <div class="item" id="item2">second box</div>
+        <div class="item" id="item3">third box</div>
+        <!-- <div class="item" id="item4">fourth box</div>
+        <div class="item" id="item5">fifth box</div>
+        <div class="item" id="item6">Sixth box</div> -->
+    </div>
+</body>
+
+</html>
