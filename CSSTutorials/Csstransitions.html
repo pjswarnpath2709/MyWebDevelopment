@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Css Transitions</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .container {
+            width: 1440px;
+            height: 789px;
+            margin: auto;
+        }
+
+        #box {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            font-size: 30px;
+            color: black;
+            background-color: red;
+            justify-content: center;
+            align-items: center;
+            transition-property: background-color, color;
+            transition-duration: 1.5s;
+        }
+
+        #box:hover {
+            cursor: pointer;
+            /* background-image: url('https://cdn-icons-png.flaticon.com/128/12/12019.png'); */
+            background-position: center;
+            background-color: black
+        }
+
+        .img {
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://cdn-icons-png.flaticon.com/128/12/12019.png');
+            background-size: fill;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        #box .img:hover {
+
+            animation: pulkit;
+            animation-duration: 1.5s;
+            animation-delay: 0.5s;
+            animation-fill-mode: forwards;
+
+        }
+
+        @keyframes pulkit {
+            from {
+                background-image: url('https://cdn-icons-png.flaticon.com/128/12/12019.png');
+                background-size: fill;
+                background-repeat: no-repeat;
+                background-position: top;
+            }
+
+            to {
+                /* background-image: url('https://cdn-user-icons.flaticon.com/71577/71577668/1653033081905.svg?token=exp=1653033984~hmac=47191ccbd9afdf9c1df2a7a69f09240e'); */
+                background-image: url('https://cdn-user-icons.flaticon.com/71577/71577668/1653035065732.svg?token=exp=1653035967~hmac=da320323f8864b6fb81da9f75245c458');
+                background-size: fill;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- <h3>this is css transitions</h3> -->
+    <div class="container">
+        <div id="box">
+            <div class="img">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

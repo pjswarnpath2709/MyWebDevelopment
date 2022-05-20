@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KeyFrames and Animation in Css</title>
+    <link href="http://fonts.cdnfonts.com/css/honeystar" rel="stylesheet">
+    <style>
+        .container {
+            display: block;
+            background-color: white;
+            width: 100vw;
+            height: 30vh;
+        }
+
+        .box {
+            background: red;
+            width: 100vw;
+            height: 30vh;
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: white;
+
+            /* animation: pulkit2; */
+            animation: pulkit;
+            animation-duration: 4s;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+            /* animation-delay: 3s; */
+        }
+
+
+        @keyframes pulkit {
+            from {
+                width: 0%;
+                color: yellow;
+            }
+
+            to {
+                width: 100%;
+                color: white;
+            }
+        }
+
+        @keyframes pulkit2 {
+            0% {
+                top: 0px;
+                top: 0px;
+            }
+
+            25% {
+                top: 250px;
+                top: 0px;
+            }
+
+            50% {
+                top: 0px;
+                top: 250px;
+            }
+
+            75% {
+                top: 250px;
+                top: 250px;
+            }
+
+            100% {
+                top: 0px;
+                top: 0px;
+            }
+
+        }
+
+        .innerbox {
+
+            font-size: 100px;
+            padding: 20px;
+            text-align: center;
+            font-family: 'Honeystar', sans-serif;
+            position: absolute;
+            z-index: 10;
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <div class="innerbox">Pulkit's</div>
+        </div>
+    </div>
+</body>
+
+</html>
