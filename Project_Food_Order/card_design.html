@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>card design</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .cardgrid {
+            margin: auto;
+            justify-content: center;
+            height: 90vh;
+            width: 90vw;
+            border: 2px solid black;
+            display: grid;
+            padding: 10px;
+            overflow: scroll;
+            grid-gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+
+        }
+
+        .card {
+            margin: auto;
+            display: flex;
+            height: 390;
+            width: 210px;
+            border-radius: 25px;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: -2px 2px 8px 2px rgb(244, 170, 170);
+
+        }
+
+        .card:hover {
+            box-shadow: -2px 2px 8px 2px rgb(69, 67, 67);
+            transform: translateY(-10px);
+        }
+
+
+        .img {
+            width: 100px;
+            height: 100px;
+            /* border: 2px solid palevioletred; */
+            margin-bottom: 2px;
+            border-radius: 50%;
+            background-image: url('https://media.istockphoto.com/photos/juicy-hamburger-on-white-background-picture-id1206323282?k=20&m=1206323282&s=612x612&w=0&h=yatlq6BHRCCvoTzFZLSwaJc0O8Quct_tRPWtH0dj9Fc=');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .content {
+            display: inline-flex;
+            flex-direction: column;
+            background-color: rgb(170, 208, 241);
+            margin-top: 2px;
+            border-radius: 25px;
+            transition: all 0.5s ease-in 0s;
+
+        }
+
+        .content:hover {
+            background-color: rgb(99, 180, 250);
+            transform: translate(1px 1px 20px);
+        }
+
+        .text {
+            height: 150px;
+            width: 200px;
+            margin: 2px;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4px;
+
+
+        }
+
+        .icon {
+            display: flex;
+            justify-content: space-between;
+            height: 40px;
+            width: 200px;
+            margin: 2px;
+            border-radius: 25px;
+
+        }
+
+        .icon span {
+            margin: 2px;
+            text-align: center;
+            padding: 6px;
+            font-size: 20px;
+            font-weight: bold;
+
+        }
+
+        .icon img {
+
+            margin: 1px;
+            /* padding: 2px; */
+            padding-bottom: 5px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="cardgrid">
+        <div class="card">
+            <div class="img"></div>
+            <div class="content">
+                <div class="text">
+                    <h2>heading</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, numquam.</p>
+                </div>
+                <div class="icon">
+                    <span>Rs. 20</span>
+                    <!-- <div class="innerIcon"> -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png " width="35px" height="35px">
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img"></div>
+            <div class="content">
+                <div class="text">
+                    <h2>heading</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, numquam.</p>
+                </div>
+                <div class="icon">
+                    <span>Rs. 20</span>
+                    <!-- <div class="innerIcon"> -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png " width="35px" height="35px">
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img"></div>
+            <div class="content">
+                <div class="text">
+                    <h2>heading</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, numquam.</p>
+                </div>
+                <div class="icon">
+                    <span>Rs. 20</span>
+                    <!-- <div class="innerIcon"> -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png " width="35px" height="35px">
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img"></div>
+            <div class="content">
+                <div class="text">
+                    <h2>heading</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, numquam.</p>
+                </div>
+                <div class="icon">
+                    <span>Rs. 20</span>
+                    <!-- <div class="innerIcon"> -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png " width="35px" height="35px">
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img"></div>
+            <div class="content">
+                <div class="text">
+                    <h2>heading</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, numquam.</p>
+                </div>
+                <div class="icon">
+                    <span>Rs. 20</span>
+                    <!-- <div class="innerIcon"> -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png " width="35px" height="35px">
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img"></div>
+            <div class="content">
+                <div class="text">
+                    <h2>heading</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, numquam.</p>
+                </div>
+                <div class="icon">
+                    <span>Rs. 20</span>
+                    <!-- <div class="innerIcon"> -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png " width="35px" height="35px">
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img"></div>
+            <div class="content">
+                <div class="text">
+                    <h2>heading</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, numquam.</p>
+                </div>
+                <div class="icon">
+                    <span>Rs. 20</span>
+                    <!-- <div class="innerIcon"> -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png " width="35px" height="35px">
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img"></div>
+            <div class="content">
+                <div class="text">
+                    <h2>heading</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, numquam.</p>
+                </div>
+                <div class="icon">
+                    <span>Rs. 20</span>
+                    <!-- <div class="innerIcon"> -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png " width="35px" height="35px">
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img"></div>
+            <div class="content">
+                <div class="text">
+                    <h2>heading</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, numquam.</p>
+                </div>
+                <div class="icon">
+                    <span>Rs. 20</span>
+                    <!-- <div class="innerIcon"> -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png " width="35px" height="35px">
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img"></div>
+            <div class="content">
+                <div class="text">
+                    <h2>heading</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, numquam.</p>
+                </div>
+                <div class="icon">
+                    <span>Rs. 20</span>
+                    <!-- <div class="innerIcon"> -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png " width="35px" height="35px">
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img"></div>
+            <div class="content">
+                <div class="text">
+                    <h2>heading</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, numquam.</p>
+                </div>
+                <div class="icon">
+                    <span>Rs. 20</span>
+                    <!-- <div class="innerIcon"> -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png " width="35px" height="35px">
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img"></div>
+            <div class="content">
+                <div class="text">
+                    <h2>heading</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, numquam.</p>
+                </div>
+                <div class="icon">
+                    <span>Rs. 20</span>
+                    <!-- <div class="innerIcon"> -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png " width="35px" height="35px">
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img"></div>
+            <div class="content">
+                <div class="text">
+                    <h2>heading</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, numquam.</p>
+                </div>
+                <div class="icon">
+                    <span>Rs. 20</span>
+                    <!-- <div class="innerIcon"> -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png " width="35px" height="35px">
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="img"></div>
+            <div class="content">
+                <div class="text">
+                    <h2>heading</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, numquam.</p>
+                </div>
+                <div class="icon">
+                    <span>Rs. 20</span>
+                    <!-- <div class="innerIcon"> -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png " width="35px" height="35px">
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

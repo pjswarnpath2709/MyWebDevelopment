@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>music website</title>
+    <link href="http://fonts.cdnfonts.com/css/sentosa" rel="stylesheet">
+    <link href="http://fonts.cdnfonts.com/css/cabo-rounded" rel="stylesheet">
+    <link href="http://fonts.cdnfonts.com/css/petunia" rel="stylesheet">
+                
+
+
+    <style>
+        * {
+            margin: 0px;
+        }
+
+        .container {
+            /* width: 100vw;
+            height: 100vh; */
+            /* border: 2px solid purple; */
+        }
+
+        #title {
+            /* border: 2px solid peru; */
+            background-color: rgb(123, 252, 175);
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            font-family: 'Sentosa', sans-serif;
+            font-weight: bolder;
+            color: rgb(232, 105, 105);
+            animation-name: music;
+            animation-duration: 2s;
+            animation-timing-function: 1s;
+
+            /* animation-delay: 1s; */
+        }
+
+        @keyframes music {
+            from {
+                width: 0px;
+            }
+
+            to {
+                width: 100vw;
+            }
+        }
+
+        .navbar {
+            /* border: 2px solid royalblue; */
+            background-color: aliceblue;
+            display: flex;
+            margin: 0px;
+            height: 50px;
+            position: sticky;
+        }
+
+        /* @media only screen and(max-width:640px){
+            .navbar{
+                display: none;
+            }
+        } */
+
+        .rightside {
+            /* background-color: rgb(235, 85, 85); */
+            /* border: 2px solid black; */
+            margin: 2px;
+            display: flex;
+            flex-grow: 2;
+            /* flex-shrink: 2; */
+            justify-content: flex-end;
+            align-items: center;
+            font-size: 15px;
+            /* padding:15px; */
+            /* margin-left:600px ; */
+            /* border-radius: 30px; */
+            transition: all .5s ease-in 0s;
+            /* transition-duration:2s ; */
+            /* background-color: rgb(249, 182, 182); */
+            /* transition-property:background-color ; */
+        }
+
+        #sign {
+            display: flex;
+            background-color: rgb(230, 89, 89);
+            /* border: 2px solid burlywood; */
+            justify-content: flex-end;
+            font-size: 20px;
+            padding: 2px;
+            margin: 0px 5px;
+        }
+
+        #sign:hover {
+
+            background-color: rgb(250, 165, 165);
+            transform: scale(1.5);
+            /* border: 2px solid black; */
+        }
+
+
+        .listItems {
+            /* border: 2px solid teal; */
+            color: darkblue;
+            display: flex;
+            list-style: none;
+            margin: 2px;
+            padding: 0px;
+            align-items: center;
+            /* width: 100px; */
+            flex-grow: 0;
+            justify-content: flex-start;
+            font-size: 25px;
+            font-family: 'Cabo Rounded', sans-serif;
+            font-family: 'Cabo Rounded Regular', sans-serif;
+            text-decoration: underline;
+
+        }
+
+        .listItems li {
+            
+            margin: 10px;
+            padding: 0px 10px;
+            /* background-color: rgb(145, 130, 240); */
+            border-radius: 15px;
+        }
+
+        .listItems li:hover {
+            cursor: pointer;
+            background-color: rgb(145, 130, 240);
+
+        }
+        .circle{
+            /* border: 2px solid palegreen; */
+        }
+
+        #box3 img{
+            /* border: 3px solid red; */
+            border-radius: 50%;
+            position: relative;
+            left: -330px;
+            top: 30px;
+            margin: 0px;
+            padding: 0px;
+            margin-right: 200px;
+            
+        }
+        #box3 img:hover{
+            box-shadow: -7px 5px rgba(0, 0, 0, 0.368);
+        }
+          
+        
+
+        .box {
+            display: inline-block;
+            width: 300px;
+            height: 300px;
+            /* border: 2px solid royalblue; */
+            /* margin: 3px; */
+            margin-left: 30px;
+            margin-top: 40px;
+            border-radius: 50%;
+
+        }
+
+        #box2 {
+            /* border: 2px solid rgb(121, 244, 110); */
+
+            background-color: rgb(237, 97, 111);
+            position: absolute;
+            top: 180px;
+            left: 10px;
+        }
+
+        #box1 {
+            background-color: rgb(235, 153, 161);
+            position: relative;
+            top: 15px;
+            left: 20px;
+        }
+        .circle{
+            display: flex;
+            /* margin: 5px; */
+        }
+        #first {
+            /* border: 2px solid darkcyan; */
+            font-size: 60px;
+            color: darkcyan;
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            /* align-items: center; */
+            /* margin-right: 300px; */
+            font-family: 'Petunia', sans-serif;
+            text-shadow:2px 2px  rgb(243, 176, 198);
+                                             
+            
+        }
+        
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div id="title">
+                Musicana
+            </div>
+            <nav class="navbar">
+                <ul class="listItems">
+                    <li class="item">Home</li>
+                    <li class="item">Page</li>
+                    <li class="item">Music</li>
+                    <li class="item">Feature</li>
+                    <li class="item">About</li>
+                    <li class="item">Learn</li>
+                </ul>
+                <div class="rightside">
+                    <div id="sign"> Sign Up</div>
+                </div>
+            </nav>
+
+        </div>
+    </header>
+    <div class="circle">
+        <div class="box" id="box1"></div>
+        <div class="box" id="box2"></div>
+        <div class="box" id="box3">
+            <img src="https://as2.ftcdn.net/v2/jpg/02/54/28/89/1000_F_254288948_hy4c6gqgNKFDSwEJaztPGT72UvAMEejm.jpg" width="310px" height="300px">
+        </div>
+        <!-- <div id="logo">
+            <img src="https://i.pinimg.com/736x/18/b5/18/18b5186c89ffa4aa6ea40b3aa09a9338.jpg" width="600px" height="300px">
+        </div> -->
+        <div class="text">
+            <p id="first">The sound of a new generation</p>
+           <!-- <p id="second">
+            Hip Hop Wired keeps readers informed about the latest on hip hop news and culture and rap entertainment news as well as up-to-date information about the industry most popular and talked about rappers and hip-hop artists. In addition to real-time news on hip hop music and artists, the site also regularly publishes new video content on different stories coming from the world of hip hop. The blog also offers information on politics and tech surrounding hip hop culture.
+            </p> -->
+        </div>
+    </div>
+
+</body>
+
+</html>

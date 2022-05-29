@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Rows and Gaps!</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-rows: 1fr 2fr 6fr;
+            grid-auto-rows: 3fr;
+            grid-template-columns: 1fr 3fr;
+            grid-gap: 1rem;
+
+        }
+
+        .box {
+            background-color: red;
+            border: 2px solid black;
+
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Grid learning</h1>
+    <div class="container">
+        <div class="box">this is box1</div>
+        <div class="box">this is box2</div>
+        <div class="box">this is box3</div>
+        <div class="box">this is box4</div>
+        <div class="box">this is box5</div>
+        <div class="box">this is box6</div>
+        <div class="box">this is box7</div>
+        <div class="box">this is box8</div>
+        <div class="box">this is box9</div>
+        <div class="box">this is box10</div>
+    </div>
+</body>
+
+</html>
