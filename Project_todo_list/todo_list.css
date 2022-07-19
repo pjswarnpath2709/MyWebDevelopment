@@ -1,0 +1,138 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Fruit Sale", sans-serif;
+}
+
+body {
+  background: white;
+}
+
+.container {
+  margin: 10px auto;
+  width: 80%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  align-self: center;
+  display: flex;
+  border: 2px solid rgb(203, 201, 201);
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 1;
+  box-shadow: 1px 1px 15px 1px gray;
+}
+
+.input {
+  margin: 2rem;
+  border: 2px solid transparent;
+  display: flex;
+  width: 50rem;
+  padding: 2px;
+  align-items: center;
+  flex-direction: row;
+}
+#todo_input {
+  padding: 10px;
+  margin: 20px;
+  flex-grow: 3;
+  border: 0.01px solid black;
+  color: gray;
+  /* width: 25rem; */
+  font-size: 1.5rem;
+  height: 4rem;
+  border-radius: 10px;
+}
+#todo_input::placeholder {
+  color: gray;
+}
+.button_add {
+  flex-grow: 1;
+  height: 4rem;
+  /* width: 10rem; */
+  color: rgb(132, 132, 312);
+  background-color: whitesmoke;
+  font-size: 1.5rem;
+}
+.button {
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 4px;
+  border-color: transparent;
+}
+.button:hover {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(132, 132, 312);
+}
+
+.list {
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+.listcontainer {
+  padding: 8px;
+  width: 50rem;
+  height: 30rem;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
+}
+.listcontainer::-webkit-scrollbar {
+  display: none;
+}
+.listitem {
+  height: 3rem;
+  width: 40rem;
+  display: flex;
+  background-color: white;
+  margin: 8px;
+  border-radius: 10px;
+  z-index: 2;
+  box-shadow: 2px 2px 2px 2px rgb(190, 187, 187);
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  color: rgb(33, 23, 23);
+  align-items: center;
+  padding: 8px;
+}
+
+.button_done {
+  font-size: 0.8rem;
+  height: 50px;
+  background-color: transparent;
+  color: rgb(132, 132, 312);
+  width: 50px;
+}
+.button_remove {
+  font-size: 0.8rem;
+  height: 50px;
+  background-color: transparent;
+  color: rgb(132, 132, 312);
+  width: 50px;
+}
+
+.labeltext {
+  text-align: center;
+  font-size: 1.3rem;
+  flex-grow: 2;
+  font-weight: bold;
+  color: rgb(80, 80, 208);
+}
+
+.done {
+  text-decoration: line-through;
+  background-color: rgb(221, 163, 163);
+}
+
+span {
+  color: red;
+  font-size: 20px;
+}
