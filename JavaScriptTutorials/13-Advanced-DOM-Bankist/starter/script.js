@@ -115,8 +115,8 @@ document.querySelectorAll('.nav__link').forEach(ele => {
 
 //////-------------------------------------------------------------------------------------------------------------------------------//////
 
-// 1. Add event listener to the common parrent element
-// 2. in that listerner , determine which element originated that event
+// 1. Add event listener to the common parent element
+// 2. in that listener , determine which element originated that event
 
 document
   .querySelector('.nav__links')
