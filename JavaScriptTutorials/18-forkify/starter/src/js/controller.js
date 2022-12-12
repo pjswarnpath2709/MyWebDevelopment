@@ -1,5 +1,7 @@
 import * as model from './model.js';
 
+import { MODAL_CLOSE_SEC } from './config.js';
+
 import recipeView from './views/recipeView.js';
 
 import bookmarkView from './views/bookmarkView.js';
@@ -7,6 +9,8 @@ import bookmarkView from './views/bookmarkView.js';
 import searchView from './views/searchView.js';
 
 import resultsView from './views/resultsView.js';
+
+import addRecipeView from './views/addRecipeView.js';
 
 import 'core-js/stable';
 
@@ -40,6 +44,10 @@ const controlRecipes = async function () {
     // Update results view to mark selected search result
     resultsView.update(model.getSearchResultsPage());
 
+    // 3) Updating Bookmarks View
+
+    bookmarkView.update(model.state.bookmarks);
+
     // result is stored in the state variable
     await model.loadRecipe(id);
 
@@ -51,6 +59,10 @@ const controlRecipes = async function () {
   }
 
   controlServings();
+};
+
+const controlBookmarks = function () {
+  bookmarkView.render(model.state.bookmarks);
 };
 
 const controlSearchResults = async function () {
@@ -107,13 +119,45 @@ const controlAddBookmark = function () {
   bookmarkView.render(model.state.bookmarks);
 };
 
+const controlAddRecipe = async function (newRecipeData) {
+  try {
+    // render a spinner
+    addRecipeView.renderSpinner();
+
+    // Upload the new Recipe data
+    await model.uploadRecipe(newRecipeData);
+
+    // Render the recipe
+    recipeView.render(model.state.recipe);
+
+    // Success Message
+    addRecipeView.renderMessage();
+
+    // render the bookmarkView
+    bookmarkView.render(model.state.bookmarks);
+
+    // change Id in url
+    window.history.pushState(null, '', `#${model.state.recipe.id}`);
+
+    // Close Form Window
+    setTimeout(() => {
+      addRecipeView.toggleWindow();
+    }, MODAL_CLOSE_SEC * 1000);
+  } catch (err) {
+    console.error(`😖😖 ${err}`);
+    addRecipeView.renderError(err.message);
+  }
+};
+
 //////-------------------------------------------------------------------------------------------------------------------------------//////
 
 function init() {
+  bookmarkView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerBookmark(controlAddBookmark);
   searchView.addHandlerRender(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
+  addRecipeView.addHandlerUpload(controlAddRecipe);
 }
 init();
