@@ -6,7 +6,7 @@ import moment from "moment";
 function Note(props) {
   const formatTime = (value) => {
     if (!value) return "";
-    return moment().format("MMMM Do YYYY, h:mm:ss a");
+    return moment(value).format("MMMM Do YYYY, h:mm:ss a");
   };
 
   //////-------------------------------------------------------------------------------------------------------------------------------//////
