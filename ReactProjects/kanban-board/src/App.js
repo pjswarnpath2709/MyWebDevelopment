@@ -33,7 +33,7 @@ const App = () => {
       tasks: [],
       date: "",
       description:
-        "update title , set description ,set labels , assign tasks by clicking on tasks.You can drag and drop cards from one board to another",
+        "update title , set description ,set labels , assign tasks by clicking on card.You can drag and drop cards from one board to another",
     };
 
     const index = boards.findIndex((board) => board.id === boardId);
