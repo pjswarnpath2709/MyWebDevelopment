@@ -1,0 +1,68 @@
+.container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 30px !important;
+}
+
+.main {
+  width: 100% !important;
+  display: flex !important;
+  gap: 30px !important;
+}
+
+.main img {
+  flex: 1.5 !important;
+  width: 100% !important;
+  object-fit: contain !important;
+}
+
+.main .details {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.details .title {
+  font-weight: bold !important;
+  font-size: 1.5rem !important;
+  letter-spacing: 1px !important;
+}
+
+.details .sub {
+  font-size: 0.875rem !important;
+  letter-spacing: 1px !important;
+  font-weight: 700 !important;
+}
+
+.details .desc {
+  font-weight: 500 !important;
+  letter-spacing: 1px !important;
+}
+
+.details label {
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  color: #525252 !important;
+  margin-bottom: 5px !important;
+  margin-top: 25px !important;
+  border-bottom: 1px solid #525252 !important;
+}
+
+.similar {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px !important;
+  padding: 0 30px !important;
+}
+
+.similar .title {
+  font-weight: bold !important;
+  font-size: 1.5rem !important;
+}
+
+.similar .movies {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 20px !important;
+  justify-content: space-around !important;
+}

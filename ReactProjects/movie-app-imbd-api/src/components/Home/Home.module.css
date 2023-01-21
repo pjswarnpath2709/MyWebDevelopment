@@ -1,0 +1,17 @@
+.container {
+  padding: 30px !important;
+}
+
+.title {
+  font-weight: bold !important;
+  font-size: 1.5rem !important;
+  margin-bottom: 30px !important;
+}
+
+.innerContainer {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 30px !important;
+  justify-content: space-evenly !important;
+  align-items: center !important;
+}

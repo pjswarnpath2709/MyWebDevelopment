@@ -1,0 +1,38 @@
+.container {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 30px !important;
+  padding: 30px !important;
+}
+
+.container .header {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 20px !important;
+  row-gap: 10px !important;
+}
+
+.chip {
+  border-radius: 20px !important;
+  color: black !important;
+  border: 1px solid gray !important;
+  padding: 3px 8px !important;
+  cursor: pointer !important;
+}
+.activeChip {
+  border: 1px solid #005fdb !important;
+  color: #005fdb !important;
+}
+
+.title {
+  font-weight: bold !important;
+  font-size: 1.5rem !important;
+  color: black !important;
+}
+
+.body {
+  display: flex !important;
+  gap: 30px !important;
+  justify-content: space-evenly !important;
+  flex-wrap: wrap !important;
+}
