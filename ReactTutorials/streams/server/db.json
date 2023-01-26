@@ -1,0 +1,26 @@
+{
+  "streams": [
+    {
+      "title": "Test Title",
+      "description": "testing the working of server...",
+      "id": 1
+    },
+    {
+      "title": "Test Title 2",
+      "description": "Second test for the working of the server",
+      "id": 2
+    },
+    {
+      "title": "True Title",
+      "description": "this stream is about refactoring..",
+      "userID": "115621677288351298765",
+      "id": 4
+    },
+    {
+      "title": "Stream Form Check",
+      "description": "just updating the description here",
+      "userID": "115621677288351298765",
+      "id": 5
+    }
+  ]
+}
