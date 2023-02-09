@@ -60,7 +60,7 @@ app.use(shopRoutes);
 //////+++++++++++++++++++++++++++++++++++++++++//////
 
 // handling errors , sending back 404
-const { pageNotFound } = require('./controllers/products')
+const { pageNotFound } = require('./controllers/error')
 app.use(pageNotFound);
 
 //////+++++++++++++++++++++++++++++++++++++++++//////
