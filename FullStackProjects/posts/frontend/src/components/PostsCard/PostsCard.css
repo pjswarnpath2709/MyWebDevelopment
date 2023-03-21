@@ -1,0 +1,49 @@
+.postsCard {
+  border: 3px solid rgb(46, 46, 247);
+  width: 20rem;
+  height: 25rem;
+  display: flex;
+  flex-direction: column;
+}
+.postsCard-header {
+  height: 20%;
+}
+.postsCard-post {
+  height: 65%;
+}
+.postsCard-footer {
+  display: flex;
+  flex-direction: row;
+  height: 15%;
+  justify-content: space-between;
+}
+
+.footer-like {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer-like img {
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+}
+.footer-comment {
+  width: 20%;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer-comment img {
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  margin-right: 0px;
+  transition: 1s;
+}
+
+.postsCard-footer active {
+  color: red;
+}
