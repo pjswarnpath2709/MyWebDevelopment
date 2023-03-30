@@ -20,8 +20,8 @@ const OrderDetails = ({ match }) => {
       dispatch(clearErrors());
     }
 
-    dispatch(getOrderDetails(match.params.orderId));
-  }, [dispatch, alert, error, match.params.orderId]);
+    dispatch(getOrderDetails(match.params.id));
+  }, [dispatch, alert, error, match.params.id]);
   return (
     <Fragment>
       {loading ? (

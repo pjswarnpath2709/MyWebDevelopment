@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { Fragment, useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
-import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, getProductDetails } from "../../actions/productAction";
-import { useAlert } from "react-alert";
-
-import Loader from "../layout/Loader/Loader";
 import "./ProductDetails.css";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  clearErrors,
+  getProductDetails,
+  newReview,
+} from "../../actions/productAction";
+import ReviewCard from "./ReviewCard.js";
+import Loader from "../layout/Loader/Loader";
+import { useAlert } from "react-alert";
 import MetaData from "../layout/MetaData";
 import { addItemsToCart } from "../../actions/cartAction";
 import {
+  Dialog,
   DialogActions,
   DialogContent,
-  Dialog,
   DialogTitle,
   Button,
 } from "@material-ui/core";
 import { Rating } from "@material-ui/lab";
-import { newReview } from "../../actions/productAction";
-
-import ReviewCard from "./ReviewCard.js";
 import { NEW_REVIEW_RESET } from "../../constants/productConstants";
 
-const ProductDetails = () => {
-  const { productId } = useParams();
+const ProductDetails = ({ match }) => {
   const dispatch = useDispatch();
   const alert = useAlert();
+
   const { product, loading, error } = useSelector(
     (state) => state.productDetail
   );
@@ -34,21 +34,12 @@ const ProductDetails = () => {
     (state) => state.newReview
   );
 
-  useEffect(() => {
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
-    }
-    if (reviewError) {
-      alert.error(reviewError);
-      dispatch(clearErrors());
-    }
-    if (success) {
-      alert.success("Review Updated Successfully");
-      dispatch({ type: NEW_REVIEW_RESET });
-    }
-    dispatch(getProductDetails(productId));
-  }, [dispatch, alert, error, reviewError, productId, success]);
+  const options = {
+    size: "large",
+    value: product.ratings,
+    readOnly: true,
+    precision: 0.5,
+  };
 
   const [quantity, setQuantity] = useState(1);
   const [open, setOpen] = useState(false);
@@ -56,24 +47,22 @@ const ProductDetails = () => {
   const [comment, setComment] = useState("");
 
   const increaseQuantity = () => {
-    if (product.stock <= quantity) {
-      return;
-    }
+    if (product.stock <= quantity) return;
+
     const qty = quantity + 1;
     setQuantity(qty);
   };
 
   const decreaseQuantity = () => {
-    if (quantity <= 1) {
-      return;
-    }
+    if (1 >= quantity) return;
+
     const qty = quantity - 1;
     setQuantity(qty);
   };
 
   const addToCartHandler = () => {
-    dispatch(addItemsToCart(productId, quantity));
-    alert.success("Item Added to Cart");
+    dispatch(addItemsToCart(match.params.id, quantity));
+    alert.success("Item Added To Cart");
   };
 
   const submitReviewToggle = () => {
@@ -85,41 +74,51 @@ const ProductDetails = () => {
 
     myForm.set("rating", rating);
     myForm.set("comment", comment);
-    myForm.set("productId", productId);
+    myForm.set("productId", match.params.id);
 
     dispatch(newReview(myForm));
 
     setOpen(false);
   };
 
-  const options = {
-    size: "large",
-    value: product.ratings,
-    readOnly: true,
-    precision: 0.5,
-  };
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
 
-  const renderCarousel = product?.images?.map((image, i) => {
-    return (
-      <img
-        key={i + image.url}
-        className="CarouselImage"
-        src={image.imageUrl}
-        alt={`${i} Slide`}
-      />
-    );
-  });
+    if (reviewError) {
+      alert.error(reviewError);
+      dispatch(clearErrors());
+    }
+
+    if (success) {
+      alert.success("Review Submitted Successfully");
+      dispatch({ type: NEW_REVIEW_RESET });
+    }
+    dispatch(getProductDetails(match.params.id));
+  }, [dispatch, match.params.id, error, alert, reviewError, success]);
 
   return (
-    <>
+    <Fragment>
       {loading ? (
         <Loader />
       ) : (
-        <>
+        <Fragment>
           <MetaData title={`${product.name} -- ECOMMERCE`} />
           <div className="ProductDetails">
             <div>
-              <Carousel>{product.images && renderCarousel}</Carousel>
+              <Carousel>
+                {product.images &&
+                  product.images.map((item, i) => (
+                    <img
+                      className="CarouselImage"
+                      key={i}
+                      src={item.imageUrl}
+                      alt={`${i} Slide`}
+                    />
+                  ))}
+              </Carousel>
             </div>
 
             <div>
@@ -143,8 +142,8 @@ const ProductDetails = () => {
                     <button onClick={increaseQuantity}>+</button>
                   </div>
                   <button
-                    onClick={addToCartHandler}
                     disabled={product.stock < 1 ? true : false}
+                    onClick={addToCartHandler}
                   >
                     Add to Cart
                   </button>
@@ -162,11 +161,12 @@ const ProductDetails = () => {
                 Description : <p>{product.description}</p>
               </div>
 
-              <button className="submitReview" onClick={submitReviewToggle}>
+              <button onClick={submitReviewToggle} className="submitReview">
                 Submit Review
               </button>
             </div>
           </div>
+
           <h3 className="reviewsHeading">REVIEWS</h3>
 
           <Dialog
@@ -181,6 +181,7 @@ const ProductDetails = () => {
                 value={rating}
                 size="large"
               />
+
               <textarea
                 className="submitDialogTextArea"
                 cols="30"
@@ -202,14 +203,16 @@ const ProductDetails = () => {
           {product.reviews && product.reviews[0] ? (
             <div className="reviews">
               {product.reviews &&
-                product.reviews.map((review) => <ReviewCard review={review} />)}
+                product.reviews.map((review) => (
+                  <ReviewCard key={review._id} review={review} />
+                ))}
             </div>
           ) : (
             <p className="noReviews">No Reviews Yet</p>
           )}
-        </>
+        </Fragment>
       )}
-    </>
+    </Fragment>
   );
 };
 
