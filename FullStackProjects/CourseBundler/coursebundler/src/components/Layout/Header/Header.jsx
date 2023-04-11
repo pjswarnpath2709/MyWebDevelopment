@@ -12,6 +12,7 @@ import {
   VStack,
   useDisclosure,
 } from '@chakra-ui/react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const LinkButton = ({
@@ -34,11 +35,7 @@ const LinkButton = ({
 
 const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const isAuthenticated = true;
-  const user = {
-    role: 'admin',
-  };
-
+  const { isAuthenticated, user } = useSelector(store => store.user);
   const logoutHandler = e => {
     e.preventDefault();
   };

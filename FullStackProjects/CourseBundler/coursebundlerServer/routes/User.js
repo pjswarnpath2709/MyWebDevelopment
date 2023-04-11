@@ -23,7 +23,7 @@ const router = Router();
 
 // auth routes
 router.route("/register").post(singleUpload, register);
-router.route("/login").get(login);
+router.route("/login").post(login);
 router.route("/logout").get(logout);
 router.route("/forgetpassword").post(forgetPassword);
 router.route("/resetpassword/:token").put(resetPassword);
