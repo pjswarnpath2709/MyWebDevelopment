@@ -2,7 +2,7 @@ const app = require("./app");
 const mongoose = require("mongoose");
 const cloudinary = require("cloudinary");
 const { config } = require("dotenv");
-config();
+config({ path: "backend/config/config.env" });
 
 //////+++++++++++++++++++++++++++++++++++++++++//////
 
