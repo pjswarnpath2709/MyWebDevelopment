@@ -1,6 +1,6 @@
 import { config } from "dotenv";
 config({ path: "./config/config.env" });
-
+import cors from "cors";
 import express from "express";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
@@ -12,6 +12,14 @@ app.use(express.json({ limit: "100mb" }));
 app.use(express.urlencoded({ limit: "100mb", extended: true }));
 app.use(bodyParser.json({ limit: "100mb" }));
 app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
+
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 
 // importing and using routes
 import courseRoutes from "./routes/Course.js";
