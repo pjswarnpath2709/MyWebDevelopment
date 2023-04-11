@@ -24,6 +24,12 @@ app.use("/api/v1", userRoutes);
 app.use("/api/v1", paymentRoutes);
 app.use("/api/v1", otherRoutes);
 
+app.get("/", (req, res) => {
+  res.send(
+    `<h1>Site is working. click <a href=${process.env.FRONTEND_URL}>here</a> , to visit frontend part </h1>`
+  );
+});
+
 // error handling
 app.use(errorHandler);
 
