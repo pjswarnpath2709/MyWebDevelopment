@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminTemplate from '../AdminTemplate';
 import {
   Box,
@@ -18,36 +18,76 @@ import {
 } from '@chakra-ui/react';
 import { RiDeleteBin7Fill } from 'react-icons/ri';
 import CourseModal from './CourseModal';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getAllCourses,
+  getCourseLectures,
+} from '../../../redux/actions/course';
+import toast from 'react-hot-toast';
+import {
+  addLecture,
+  deleteCourse,
+  deleteLecture,
+} from '../../../redux/actions/admin';
 const AdminCourses = () => {
-  const courses = [
-    {
-      _id: '1',
-      poster: {
-        url: 'https://images.unsplash.com/photo-1672309046475-4cce2039f342?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cmVhY3QlMjBjcG91cnNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
-      },
-      title: 'React Course',
-      category: 'web development',
-      createdBy: 'creatorIsOn',
-      views: 90,
-      numOfVideos: 30,
-    },
-  ];
-
+  const dispatch = useDispatch();
+  const { courses, lectures, error, message } = useSelector(
+    store => store.course
+  );
+  const [course, setCourse] = useState(null);
+  const {
+    loading: adminLoading,
+    message: adminMessage,
+    error: adminError,
+  } = useSelector(store => store.admin);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const deleteButtonHandler = courseId => {
-    console.log(courseId);
+  useEffect(() => {
+    dispatch(getAllCourses());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch({ type: 'clearError' });
+    }
+    if (message) {
+      toast.success(message);
+      dispatch({ type: 'clearMessage' });
+    }
+    if (adminError) {
+      toast.error(adminError);
+      dispatch({ type: 'clearError' });
+    }
+    if (adminMessage) {
+      toast.success(adminMessage);
+      dispatch({ type: 'clearMessage' });
+    }
+  }, [dispatch, error, message, adminMessage, adminError]);
+
+  const deleteButtonHandler = async courseId => {
+    await dispatch(deleteCourse(courseId));
+    await dispatch(getAllCourses());
   };
-  const courseDetailsHandler = courseId => {
+  const courseDetailsHandler = item => {
+    setCourse(item);
+    dispatch(getCourseLectures(item._id));
     onOpen();
-    console.log(courseId);
   };
-  const deleteLectureButtonHandler = (courseId, lectureId) => {
-    console.log(courseId, lectureId);
+  const deleteLectureButtonHandler = async (courseId, lectureId) => {
+    await dispatch(deleteLecture(courseId, lectureId));
+    await dispatch(getCourseLectures(courseId));
+    await dispatch(getAllCourses());
   };
-  const addLectureHandler = (e, courseId, title, description, video) => {
+  const addLectureHandler = async (e, courseId, title, description, video) => {
     e.preventDefault();
-    console.log(courseId, title, description, video);
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('file', video);
+    await dispatch(addLecture(courseId, formData));
+    await dispatch(getCourseLectures(courseId));
+    await dispatch(getAllCourses());
   };
 
   return (
@@ -77,6 +117,7 @@ const AdminCourses = () => {
             <Tbody>
               {courses.map(item => (
                 <Row
+                  loading={adminLoading}
                   item={item}
                   key={item._id}
                   courseDetailsHandler={courseDetailsHandler}
@@ -87,11 +128,12 @@ const AdminCourses = () => {
           </Table>
         </TableContainer>
         <CourseModal
-          lectures={[]}
+          loading={adminLoading}
+          lectures={lectures}
           isOpen={isOpen}
           onClose={onClose}
-          courseTitle={'React Course'}
-          id={'lalalalalalal'}
+          courseTitle={course?.title}
+          id={course?._id}
           deleteButtonHandler={deleteLectureButtonHandler}
           addLectureHandler={addLectureHandler}
         />
@@ -100,7 +142,7 @@ const AdminCourses = () => {
   );
 };
 
-const Row = ({ item, courseDetailsHandler, deleteButtonHandler }) => {
+const Row = ({ item, courseDetailsHandler, deleteButtonHandler, loading }) => {
   return (
     <Tr>
       <Td>#{item._id}</Td>
@@ -116,13 +158,15 @@ const Row = ({ item, courseDetailsHandler, deleteButtonHandler }) => {
       <Td isNumeric>
         <HStack justifyContent={'flex-end'}>
           <Button
-            onClick={() => courseDetailsHandler(item._id)}
+            isLoading={loading}
+            onClick={() => courseDetailsHandler(item)}
             variant={'outline'}
             color="purple.500"
           >
             View Lectures
           </Button>
           <Button
+            isLoading={loading}
             onClick={() => deleteButtonHandler(item._id)}
             variant={'outline'}
             color="red.600"

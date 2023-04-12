@@ -10,6 +10,8 @@ import Course from "../models/Course.js";
 import cloudinary from "cloudinary";
 import getDataUri from "../utils/dataUri.js";
 import Stats from "../models/Stats.js";
+import Payment from "../models/Payment.js";
+import { razorPayInstance } from "../server.js";
 
 export const register = catchAsyncErrors(async (req, res) => {
   const { name, email, password } = req.body;
@@ -205,11 +207,29 @@ export const deleteUser = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(id);
   if (!user) throw new CustomError(UserErrors.UserNotFound);
   await cloudinary.v2.uploader.destroy(user.avatar.public_id);
-  //todo : cancel subscription
+  if (user.subscription && user.subscription.status === "active") {
+    const subscriptionId = user.subscription.id;
+    let refund = false;
+    await razorPayInstance.subscriptions.cancel(subscriptionId);
+    const payment = await Payment.findOne({
+      razorpay_subscription_id: subscriptionId,
+    });
+    const gap = Date.now() - payment.createdAt;
+    const refundTime = process.env.REFUND_DAYS * 24 * 60 * 60 * 1000;
+    if (refundTime > gap) {
+      refund = true;
+      await razorPayInstance.payments.refund(payment.razorpay_payment_id);
+    }
+    user.subscription.id = undefined;
+    user.subscription.status = undefined;
+    await payment.deleteOne();
+  }
+
   await user.deleteOne();
   res.status(200).json({
     success: true,
-    message: "deleted user successfully",
+    message:
+      "deleted user successfully , if user was subscriber and eligible for refund , it will be processed within 7 days",
   });
 });
 
@@ -217,22 +237,42 @@ export const deleteMyProfile = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user._id);
   if (!user) throw new CustomError(UserErrors.UserNotFound);
   await cloudinary.v2.uploader.destroy(user.avatar.public_id);
-  //todo : cancel subscription
+  if (user.subscription && user.subscription.status === "active") {
+    const subscriptionId = user.subscription.id;
+    let refund = false;
+    await razorPayInstance.subscriptions.cancel(subscriptionId);
+    const payment = await Payment.findOne({
+      razorpay_subscription_id: subscriptionId,
+    });
+    const gap = Date.now() - payment.createdAt;
+    const refundTime = process.env.REFUND_DAYS * 24 * 60 * 60 * 1000;
+    if (refundTime > gap) {
+      refund = true;
+      await razorPayInstance.payments.refund(payment.razorpay_payment_id);
+    }
+    user.subscription.id = undefined;
+    user.subscription.status = undefined;
+    await payment.deleteOne();
+  }
   await user.deleteOne();
   res.status(200).clearCookie("token").json({
     success: true,
-    message: "deleted user successfully",
+    message:
+      "deleted profile successfully , if you were subscriber and eligible for refund , it will be processed within 7 days",
   });
 });
 
 User.watch().on("change", async () => {
-  const stats = await Stats.find().sort({ createdAt: "desc" }).limit(1);
-  if (stats.length <= 0) {
-    return;
-  }
   const subscriptions = await User.find({
     "subscription.status": "active",
   }).count();
+  const stats = await Stats.find().sort({ createdAt: "desc" }).limit(1);
+  console.log(
+    "\x1b[35m",
+    "👉👉👉 subscriptions , stats :",
+    subscriptions,
+    stats
+  );
   stats[0].subscriptions = subscriptions.length;
   stats[0].users = await User.countDocuments();
   stats[0].createdAt = new Date(Date.now());

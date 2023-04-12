@@ -13,6 +13,7 @@ import { fileUploadCss } from '../../Auth/Register';
 import { createCourse } from '../../../redux/actions/admin';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 export const categories = [
   'Web Development',
@@ -32,7 +33,7 @@ const CreateCourse = () => {
   const [imagePrev, setImagePrev] = useState();
   const dispatch = useDispatch();
   const { loading, message, error } = useSelector(store => store.admin);
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (error) {
       toast.error(error);
@@ -41,8 +42,15 @@ const CreateCourse = () => {
     if (message) {
       toast.success(message);
       dispatch({ type: 'clearMessage' });
+      setTitle('');
+      setDescription('');
+      setImage(null);
+      setImagePrev(null);
+      setCategory('');
+      setCreatedBy('');
+      navigate('/admin/courses');
     }
-  }, [loading, message, error, dispatch]);
+  }, [loading, message, error, dispatch, navigate]);
 
   const changeImageHandler = e => {
     const file = e.target.files[0];

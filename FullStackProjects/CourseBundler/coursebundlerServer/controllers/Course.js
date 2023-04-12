@@ -54,6 +54,7 @@ export const getCourseLectures = catchAsyncErrors(async (req, res) => {
   if (!course) throw new CustomError(CourseErrors.CourseNotFound);
   course.views += 1;
   await course.save();
+  await Course.emit("change");
   res.status(200).json({
     success: true,
     lectures: course.lectures,
@@ -130,14 +131,13 @@ export const deleteLecture = catchAsyncErrors(async (req, res, next) => {
 });
 
 Course.watch().on("change", async () => {
-  const stats = await Stats.find().sort({ createdAt: "desc" }).limit(1);
-  if (stats.length <= 0) return;
   const courses = await Course.find();
   let totalViews = 0;
   for (let i = 0; i < courses.length; i++) {
     totalViews += courses[i].views;
   }
-
+  const stats = await Stats.find().sort({ createdAt: "desc" }).limit(1);
+  console.log("\x1b[35m", "👉👉👉 totalViews , stats :", totalViews, stats);
   stats[0].views = totalViews;
   stats[0].createdAt = new Date(Date.now());
   await stats[0].save();

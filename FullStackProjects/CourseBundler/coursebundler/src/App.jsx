@@ -32,6 +32,9 @@ function App() {
     store => store.user
   );
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch]);
 
   useEffect(() => {
     if (error) {
@@ -43,10 +46,6 @@ function App() {
       dispatch({ type: 'clearMessage' });
     }
   }, [error, message, dispatch]);
-
-  useEffect(() => {
-    dispatch(loadUser());
-  }, [dispatch]);
 
   return (
     <Router>

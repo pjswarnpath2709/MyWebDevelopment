@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AdminTemplate from '../AdminTemplate';
 import {
   Box,
@@ -15,41 +15,38 @@ import {
   Tr,
 } from '@chakra-ui/react';
 import { RiDeleteBin7Fill } from 'react-icons/ri';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-hot-toast';
+import {
+  deleteUser,
+  getAllUsers,
+  updateUserRole,
+} from '../../../redux/actions/admin';
 const Users = () => {
-  const users = [
-    {
-      _id: '1',
-      name: 'Name1',
-      email: ' user1@user.com',
-      role: 'user',
-      subscription: {
-        status: 'active',
-      },
-    },
-    {
-      _id: '2',
-      name: 'Name2',
-      email: ' user2@user.com',
-      role: 'admin',
-      subscription: {
-        status: 'unactive',
-      },
-    },
-    {
-      _id: '3',
-      name: 'Name3',
-      email: ' user3@user.com',
-      role: 'user',
-      subscription: {
-        status: 'active',
-      },
-    },
-  ];
+  const { users, error, loading, message } = useSelector(store => store.admin);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, [dispatch]);
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch({ type: 'clearError' });
+    }
+    if (message) {
+      toast.success(message);
+      dispatch({ type: 'clearMessage' });
+    }
+  }, [error, message, dispatch]);
+  const updateButtonHandler = async userId => {
+    await dispatch(updateUserRole(userId));
+    await dispatch(getAllUsers());
+  };
 
-  const updateButtonHandler = userId => {};
-
-  const deleteButtonHandler = userId => {};
+  const deleteButtonHandler = async userId => {
+    await dispatch(deleteUser(userId));
+    await dispatch(getAllUsers());
+  };
 
   return (
     <AdminTemplate>
@@ -74,14 +71,16 @@ const Users = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {users.map(item => (
-                <Row
-                  item={item}
-                  key={item._id}
-                  updateButtonHandler={updateButtonHandler}
-                  deleteButtonHandler={deleteButtonHandler}
-                />
-              ))}
+              {users &&
+                users?.map(item => (
+                  <Row
+                    item={item}
+                    key={item?._id}
+                    updateButtonHandler={updateButtonHandler}
+                    deleteButtonHandler={deleteButtonHandler}
+                    loading={loading}
+                  />
+                ))}
             </Tbody>
           </Table>
         </TableContainer>
@@ -90,28 +89,30 @@ const Users = () => {
   );
 };
 
-const Row = ({ item, updateButtonHandler, deleteButtonHandler }) => {
-  const active = item.subscription.status === 'active';
+const Row = ({ item, updateButtonHandler, deleteButtonHandler, loading }) => {
+  const active = item?.subscription?.status === 'active';
   return (
     <Tr>
-      <Td>#{item._id}</Td>
-      <Td>{item.name}</Td>
-      <Td>{item.email}</Td>
-      <Td>{item.role}</Td>
+      <Td>#{item?._id}</Td>
+      <Td>{item?.name}</Td>
+      <Td>{item?.email}</Td>
+      <Td>{item?.role}</Td>
       <Td color={active ? 'green.600' : 'red.600'} fontWeight={'bold'}>
         {active ? 'Active' : 'Not Active'}
       </Td>
       <Td isNumeric>
         <HStack justifyContent={'flex-end'}>
           <Button
-            onClick={() => updateButtonHandler(item._id)}
+            isLoading={loading}
+            onClick={() => updateButtonHandler(item?._id)}
             variant={'outline'}
             color="purple.500"
           >
             Change Role
           </Button>
           <Button
-            onClick={() => deleteButtonHandler(item._id)}
+            isLoading={loading}
+            onClick={() => deleteButtonHandler(item?._id)}
             variant={'outline'}
             color="red.600"
           >

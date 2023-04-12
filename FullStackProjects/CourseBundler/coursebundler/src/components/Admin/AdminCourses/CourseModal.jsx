@@ -73,15 +73,18 @@ const CourseModal = ({
                 <Heading children={`#${id}`} size={'sm'} opacity={0.4} />
               </Box>
               <Heading children={'Lectures'} size={'lg'} />
-              <VideoCard
-                title="title"
-                description="some description"
-                num={1}
-                lectureId={'randomid'}
-                courseId={id}
-                deleteButtonHandler={deleteButtonHandler}
-                loading={loading}
-              />
+              {lectures.map((lecture, i) => (
+                <VideoCard
+                  key={lecture._id}
+                  title={lecture.title}
+                  description={lecture.description}
+                  num={i + 1}
+                  lectureId={lecture._id}
+                  courseId={id}
+                  deleteButtonHandler={deleteButtonHandler}
+                  loading={loading}
+                />
+              ))}
             </Box>
             <Box>
               <form
@@ -177,7 +180,7 @@ const VideoCard = ({
 
       <Button
         isLoading={loading}
-        color={'purple.600'}
+        color={'red.500'}
         onClick={() => deleteButtonHandler(courseId, lectureId)}
       >
         <RiDeleteBin7Fill />
