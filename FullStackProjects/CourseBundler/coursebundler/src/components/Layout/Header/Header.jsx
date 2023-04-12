@@ -12,8 +12,9 @@ import {
   VStack,
   useDisclosure,
 } from '@chakra-ui/react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../redux/actions/users';
 
 const LinkButton = ({
   url = '/',
@@ -33,13 +34,14 @@ const LinkButton = ({
   );
 };
 
-const Header = () => {
+const Header = ({ isAuthenticated = false, user }) => {
+  const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isAuthenticated, user } = useSelector(store => store.user);
   const logoutHandler = e => {
     e.preventDefault();
+    onClose();
+    dispatch(logout());
   };
-
   return (
     <>
       <ColorModeSwitcher />

@@ -23,34 +23,15 @@ import { RiDeleteBin7Fill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import { fileUploadCss } from '../Auth/Register';
 
-const Profile = () => {
-  const user = {
-    name: 'Pulkit',
-    email: 'developer.pulkit@developer.com',
-    createdAt: String(new Date().toISOString()),
-    role: 'user',
-    subscription: {
-      status: 'active',
-    },
-    playlist: [
-      {
-        course: 'something',
-        poster: 'some poster url',
-      },
-    ],
-  };
-
+const Profile = ({ user }) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
-
   const removeFromPlaylistHandler = id => {
     console.log(id);
   };
-
   const changeImageHandler = (e, image) => {
     e.preventDefault();
     console.log(image);
   };
-
   return (
     <Container minH={'95vh'} maxW={'container.lg'} py="8">
       <Heading children="Profile" m="8" textTransform={'uppercase'} />
@@ -62,7 +43,7 @@ const Profile = () => {
         padding={'8'}
       >
         <VStack>
-          <Avatar boxSize={'48'} />
+          <Avatar src={user.avatar.url}  boxSize={'48'} />
           <Button onClick={onOpen} colorScheme="yellow" variant={'ghost'}>
             Change Photo
           </Button>

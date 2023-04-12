@@ -9,9 +9,9 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import { register } from '../../redux/actions/user';
+import { register } from '../../redux/actions/users';
 
 export const fileUploadCss = {
   cursor: 'pointer',
@@ -23,7 +23,7 @@ export const fileUploadCss = {
   backgroundColor: 'white',
 };
 
- const fileUploadStyle = {
+const fileUploadStyle = {
   '&::file-selector-button': fileUploadCss,
 };
 
@@ -34,13 +34,12 @@ const Register = () => {
   const [imagePrev, setImagePrev] = useState('');
   const [image, setImage] = useState('');
 
-  //  const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
   const changeImageHandler = e => {
     const file = e.target.files[0];
     const reader = new FileReader();
-
     reader.readAsDataURL(file);
-
     reader.onloadend = () => {
       setImagePrev(reader.result);
       setImage(file);
@@ -50,20 +49,17 @@ const Register = () => {
   const submitHandler = e => {
     e.preventDefault();
     const myForm = new FormData();
-
     myForm.append('name', name);
     myForm.append('email', email);
     myForm.append('password', password);
     myForm.append('file', image);
-
-    // dispatch(register(myForm));
+    dispatch(register(myForm));
   };
 
   return (
     <Container h={'95vh'}>
       <VStack h={'full'} justifyContent="center" spacing={'16'}>
         <Heading textTransform={'uppercase'} children={'Registration'} />
-
         <form onSubmit={submitHandler} style={{ width: '100%' }}>
           <Box my="4" display={'flex'} justifyContent="center">
             <Avatar src={imagePrev} size={'2xl'} />
@@ -80,7 +76,6 @@ const Register = () => {
               focusBorderColor="yellow.500"
             />
           </Box>
-
           <Box my={'4'}>
             <FormLabel htmlFor="email" children="Email Address" />
             <Input
@@ -93,7 +88,6 @@ const Register = () => {
               focusBorderColor="yellow.500"
             />
           </Box>
-
           <Box my={'4'}>
             <FormLabel htmlFor="password" children="Password" />
             <Input
@@ -106,7 +100,6 @@ const Register = () => {
               focusBorderColor="yellow.500"
             />
           </Box>
-
           <Box my={'4'}>
             <FormLabel htmlFor="chooseAvatar" children="Choose Avatar" />
             <Input
@@ -119,11 +112,9 @@ const Register = () => {
               onChange={changeImageHandler}
             />
           </Box>
-
           <Button my="4" colorScheme={'yellow'} type="submit">
             Sign Up
-          </Button>
-
+          </Button> 
           <Box my="4">
             Already Signed Up?{' '}
             <Link to="/login">
