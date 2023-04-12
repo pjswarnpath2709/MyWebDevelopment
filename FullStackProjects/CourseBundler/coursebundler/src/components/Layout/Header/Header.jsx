@@ -91,7 +91,7 @@ const Header = ({ isAuthenticated = false, user }) => {
               <LinkButton
                 onClick={onClose}
                 url="/about"
-                title="About Me"
+                title="About"
                 variant={'ghost'}
               />
 

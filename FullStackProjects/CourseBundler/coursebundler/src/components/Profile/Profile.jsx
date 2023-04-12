@@ -18,19 +18,45 @@ import {
   VStack,
   useDisclosure,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RiDeleteBin7Fill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import { fileUploadCss } from '../Auth/Register';
+import {
+  removeFromPlaylist,
+  updateProfilePicture,
+} from '../../redux/actions/profile';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadUser } from '../../redux/actions/users';
+import { toast } from 'react-hot-toast';
 
 const Profile = ({ user }) => {
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const removeFromPlaylistHandler = id => {
-    console.log(id);
+
+  const dispatch = useDispatch();
+  const { loading, error, message } = useSelector(store => store.profile);
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch({ type: 'clearError' });
+    }
+    if (message) {
+      toast.success(message);
+      dispatch({ type: 'clearMessage' });
+    }
+  }, [dispatch, loading, error, message]);
+
+  const removeFromPlaylistHandler = async id => {
+    await dispatch(removeFromPlaylist(id));
+    dispatch(loadUser());
   };
-  const changeImageHandler = (e, image) => {
+
+  const changeImageHandler = async (e, image) => {
     e.preventDefault();
-    console.log(image);
+    const myForm = new FormData();
+    myForm.append('file', image);
+    await dispatch(updateProfilePicture(myForm));
+    await dispatch(loadUser());
   };
   return (
     <Container minH={'95vh'} maxW={'container.lg'} py="8">
@@ -43,7 +69,7 @@ const Profile = ({ user }) => {
         padding={'8'}
       >
         <VStack>
-          <Avatar src={user.avatar.url}  boxSize={'48'} />
+          <Avatar src={user.avatar.url} boxSize={'48'} />
           <Button onClick={onOpen} colorScheme="yellow" variant={'ghost'}>
             Change Photo
           </Button>
@@ -64,7 +90,7 @@ const Profile = ({ user }) => {
           {user.role !== 'admin' && (
             <HStack>
               <Text children="Subscription" fontWeight={'bold'} />
-              {user.subscription.status === 'active' ? (
+              {user.subscription?.status === 'active' ? (
                 <Button variant={'unstyled'} color="yellow.500">
                   Cancel Subscription
                 </Button>
@@ -113,6 +139,7 @@ const Profile = ({ user }) => {
                   </Button>
                 </Link>
                 <Button
+                  isLoading={loading}
                   onClick={() => removeFromPlaylistHandler(element.course)}
                 >
                   <RiDeleteBin7Fill />
@@ -153,7 +180,7 @@ const ChangePhotoBox = ({ isOpen, onClose, changeImageSubmitHandler }) => {
     setImagePrev('');
     setImage('');
   };
-
+  const { loading } = useSelector(store => store.profile);
   return (
     <Modal isOpen={isOpen} onClose={closeHandler}>
       <ModalOverlay backdropFilter={'blur(10px)'} />
@@ -171,7 +198,12 @@ const ChangePhotoBox = ({ isOpen, onClose, changeImageSubmitHandler }) => {
                   css={{ '&::file-selector-button': fileUploadCss }}
                   onChange={changeImageHandler}
                 />
-                <Button w="full" colorScheme="yellow" type="submit">
+                <Button
+                  isLoading={loading}
+                  w="full"
+                  colorScheme="yellow"
+                  type="submit"
+                >
                   Change
                 </Button>
               </VStack>

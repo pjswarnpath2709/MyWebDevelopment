@@ -1,11 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { userReducer } from './reducer/userReducer';
+import {
+  profileReducer,
+  subscriptionReducer,
+  userReducer,
+} from './reducer/userReducer';
+import { courseReducer } from './reducer/courseReducer';
 
 export const server = 'https://coursebundler-e637.onrender.com/api/v1';
 
 const store = configureStore({
   reducer: {
     user: userReducer,
+    profile: profileReducer,
+    course: courseReducer,
+    subscription: subscriptionReducer,
   },
 });
 
