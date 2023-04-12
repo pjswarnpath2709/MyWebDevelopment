@@ -62,10 +62,31 @@ export const buySubscription = () => async dispatch => {
       `${server}/subscribe`,
       RequestCredentialsConfig
     );
-    dispatch({ type: 'buySubscriptionSuccess', payload: data });
+    console.log('\x1b[35m', '👉👉👉 data :', data);
+    dispatch({ type: 'buySubscriptionSuccess', payload: data.subscriptionId });
   } catch (err) {
     dispatch({
       type: 'buySubscriptionFail',
+      payload: err.response.data.message,
+    });
+  }
+};
+
+export const cancelSubscription = () => async dispatch => {
+  try {
+    dispatch({ type: 'cancelSubscriptionRequest' });
+    const { data } = await axios.delete(
+      `${server}/subscribe/cancel`,
+      RequestCredentialsConfig
+    );
+    console.log('\x1b[35m', '👉👉👉 data :', data);
+    dispatch({
+      type: 'cancelSubscriptionSuccess',
+      payload: data.message,
+    });
+  } catch (err) {
+    dispatch({
+      type: 'cancelSubscriptionFail',
       payload: err.response.data.message,
     });
   }

@@ -28,6 +28,7 @@ export const buySubscription = catchAsyncErrors(async (req, res) => {
 export const paymentVerification = catchAsyncErrors(async (req, res) => {
   const { razorpay_payment_id, razorpay_subscription_id, razorpay_signature } =
     req.body;
+  console.log("\x1b[35m", "👉👉👉 req.body :", req.body);
   const user = await User.findById(req.user._id);
   const subscription_id = user.subscription.id;
   const generated_signature = crypto

@@ -36,20 +36,21 @@ const Subscribe = ({ user }) => {
     }
     if (subscriptionId) {
       const openPopup = () => {
+        console.log(key, subscriptionId, 'key');
         const options = {
           key,
           name: 'CourseBundler',
-          description: 'get access to all premium content',
+          description: 'Get access to all premium content',
           image: myLogo,
           subscription_id: subscriptionId,
-          callback_url: `${server}/paymentVerification`,
+          callback_url: `${server}/paymentverification`,
           prefill: {
             name: user.name,
             email: user.email,
             contact: '',
           },
           notes: {
-            address: 'developer.pulkit27092002@gmail.com',
+            address: '6 pack programmer at youtube',
           },
           theme: {
             color: '#FFC800',

@@ -27,7 +27,7 @@ import {
   updateProfilePicture,
 } from '../../redux/actions/profile';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadUser } from '../../redux/actions/users';
+import { cancelSubscription, loadUser } from '../../redux/actions/users';
 import { toast } from 'react-hot-toast';
 
 const Profile = ({ user }) => {
@@ -57,6 +57,9 @@ const Profile = ({ user }) => {
     myForm.append('file', image);
     await dispatch(updateProfilePicture(myForm));
     await dispatch(loadUser());
+  };
+  const cancelSubsHandler = () => {
+    dispatch(cancelSubscription());
   };
   return (
     <Container minH={'95vh'} maxW={'container.lg'} py="8">
@@ -91,7 +94,11 @@ const Profile = ({ user }) => {
             <HStack>
               <Text children="Subscription" fontWeight={'bold'} />
               {user.subscription?.status === 'active' ? (
-                <Button variant={'unstyled'} color="yellow.500">
+                <Button
+                  onClick={cancelSubsHandler}
+                  variant={'unstyled'}
+                  color="yellow.500"
+                >
                   Cancel Subscription
                 </Button>
               ) : (
