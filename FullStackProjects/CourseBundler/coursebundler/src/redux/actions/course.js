@@ -19,3 +19,19 @@ export const getAllCourses =
       });
     }
   };
+
+export const getCourseLectures = id => async dispatch => {
+  try {
+    dispatch({ type: 'getCourseRequest' });
+    const { data } = await axios.get(
+      `${server}/course/${id}`,
+      RequestCredentialsConfig
+    );
+    dispatch({ type: 'getCourseSuccess', payload: data.lectures });
+  } catch (err) {
+    dispatch({
+      type: 'allCoursesFail',
+      payload: err.response.data.message,
+    });
+  }
+};

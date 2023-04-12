@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminTemplate from '../AdminTemplate';
 import {
   Button,
@@ -10,6 +10,19 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { fileUploadCss } from '../../Auth/Register';
+import { createCourse } from '../../../redux/actions/admin';
+import { useDispatch, useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
+
+export const categories = [
+  'Web Development',
+  'Artificial Intelligence',
+  'Data Structures & Algorithms',
+  'App Development',
+  'Game Development',
+  'Data Science',
+];
+
 const CreateCourse = () => {
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
@@ -17,16 +30,20 @@ const CreateCourse = () => {
   const [category, setCategory] = useState();
   const [image, setImage] = useState();
   const [imagePrev, setImagePrev] = useState();
-  const categories = [
-    'Web Development',
-    'Artificial Intelligence',
-    'Data Structures & Algorithms',
-    'App Development',
-    'Game Development',
-    'Data Science',
-  ];
+  const dispatch = useDispatch();
+  const { loading, message, error } = useSelector(store => store.admin);
 
-  //  const dispatch = useDispatch();
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch({ type: 'clearError' });
+    }
+    if (message) {
+      toast.success(message);
+      dispatch({ type: 'clearMessage' });
+    }
+  }, [loading, message, error, dispatch]);
+
   const changeImageHandler = e => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -39,21 +56,20 @@ const CreateCourse = () => {
     };
   };
 
-  //   const submitHandler = e => {
-  //     e.preventDefault();
-  //     const myForm = new FormData();
-
-  //     myForm.append('name', name);
-  //     myForm.append('email', email);
-  //     myForm.append('password', password);
-  //     myForm.append('file', image);
-
-  //     // dispatch(register(myForm));
-  //   };
+  const submitHandler = e => {
+    e.preventDefault();
+    const myForm = new FormData();
+    myForm.append('title', title);
+    myForm.append('description', description);
+    myForm.append('createdBy', createdBy);
+    myForm.append('category', category);
+    myForm.append('file', image);
+    dispatch(createCourse(myForm));
+  };
   return (
     <AdminTemplate>
       <Container py={'16'}>
-        <form>
+        <form onSubmit={submitHandler}>
           <Heading
             textTransform={'uppercase'}
             children="Create Course"
@@ -87,7 +103,7 @@ const CreateCourse = () => {
             />
             <Select
               focusBorderColor="purple.300"
-              value={'category'}
+              value={category}
               onChange={e => setCategory(e.target.value)}
             >
               <option hidden value="">
@@ -113,7 +129,12 @@ const CreateCourse = () => {
               }}
               onChange={changeImageHandler}
             />
-            <Button w="full" colorScheme="purple" type="submit">
+            <Button
+              isLoading={loading}
+              w="full"
+              colorScheme="purple"
+              type="submit"
+            >
               Create
             </Button>
           </VStack>

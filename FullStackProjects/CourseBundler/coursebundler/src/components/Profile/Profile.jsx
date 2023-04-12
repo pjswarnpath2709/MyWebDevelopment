@@ -35,16 +35,33 @@ const Profile = ({ user }) => {
 
   const dispatch = useDispatch();
   const { loading, error, message } = useSelector(store => store.profile);
+  const {
+    loading: subsLoading,
+    error: subsError,
+    message: subsMessage,
+  } = useSelector(store => store.subscription);
   useEffect(() => {
     if (error) {
       toast.error(error);
       dispatch({ type: 'clearError' });
     }
+
     if (message) {
       toast.success(message);
       dispatch({ type: 'clearMessage' });
     }
-  }, [dispatch, loading, error, message]);
+  }, [dispatch, loading, error, message, subsMessage, subsError]);
+
+  useEffect(() => {
+    if (subsError) {
+      toast.error(subsError);
+      dispatch({ type: 'clearError' });
+    }
+    if (subsMessage) {
+      toast.success(subsMessage);
+      dispatch({ type: 'clearMessage' });
+    }
+  }, [dispatch, subsError, subsMessage,subsLoading]);
 
   const removeFromPlaylistHandler = async id => {
     await dispatch(removeFromPlaylist(id));
@@ -58,8 +75,9 @@ const Profile = ({ user }) => {
     await dispatch(updateProfilePicture(myForm));
     await dispatch(loadUser());
   };
-  const cancelSubsHandler = () => {
-    dispatch(cancelSubscription());
+  const cancelSubsHandler = async () => {
+    await dispatch(cancelSubscription());
+    await dispatch(loadUser());
   };
   return (
     <Container minH={'95vh'} maxW={'container.lg'} py="8">
@@ -95,6 +113,7 @@ const Profile = ({ user }) => {
               <Text children="Subscription" fontWeight={'bold'} />
               {user.subscription?.status === 'active' ? (
                 <Button
+                  isLoading={subsLoading}
                   onClick={cancelSubsHandler}
                   variant={'unstyled'}
                   color="yellow.500"
