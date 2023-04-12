@@ -12,6 +12,12 @@ export const razorPayInstance = new RazorPay({
   key_secret: process.env.RAZORPAY_API_SECRET,
 });
 
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_CLIENT_NAME,
+  api_key: process.env.CLOUDINARY_CLIENT_API,
+  api_secret: process.env.CLOUDINARY_CLIENT_SECRET,
+});
+
 connectDb().then(() => {
   NodeCron.schedule("0 0 0 1 * *", async () => {
     try {
@@ -22,21 +28,6 @@ connectDb().then(() => {
     }
   });
 
-  cloudinary.v2.config({
-    cloud_name: process.env.CLOUDINARY_CLIENT_NAME,
-    api_key: process.env.CLOUDINARY_CLIENT_API,
-    api_secret: String(process.env.CLOUDINARY_CLIENT_SECRET),
-  });
-  console.log(
-    "\x1b[35m",
-    "👉👉👉  : cloud_key : ",
-    process.env.CLOUDINARY_CLIENT_API
-  );
-  console.log(
-    "\x1b[35m",
-    "👉👉👉  : cloud_secret : ",
-    process.env.CLOUDINARY_CLIENT_SECRET
-  );
   app.listen(process.env.PORT, () => {
     console.log(
       "\x1b[36m",
