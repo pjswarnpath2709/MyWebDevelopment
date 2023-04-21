@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
 
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL, "http://localhost:3000", "*"],
+    origin: '*',
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
