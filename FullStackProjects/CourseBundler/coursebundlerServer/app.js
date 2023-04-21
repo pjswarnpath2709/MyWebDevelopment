@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
 
 app.use(
   cors({
-    origin: '*',
+    origin: true,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
