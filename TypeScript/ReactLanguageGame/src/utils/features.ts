@@ -78,7 +78,7 @@ export const fetchAudio = async (
   const speechCodes = {
     hi: "hi-in",
     ja: "ja-jp",
-    es: "es",
+    es: "es-es",
     fr: "fr-fr",
   };
   const encodedParams = new URLSearchParams({
