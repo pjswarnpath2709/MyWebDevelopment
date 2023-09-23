@@ -104,7 +104,7 @@ const MembersModal = () => {
             <div key={member.id} className="flex items-center gap-x-2 mb-6">
               <UserAvatar src={member.profile.image_url} />
               <div className="flex flex-col gap-y-1">
-                <div className="text-xs font-semibold flex items-center gap-x-1">
+                <div className="text-sm font-semibold flex items-center gap-x-1">
                   {member.profile.name}
                   {roleIconMap[member.role]}
                 </div>

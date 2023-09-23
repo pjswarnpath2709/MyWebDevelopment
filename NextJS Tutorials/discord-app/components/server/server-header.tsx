@@ -39,7 +39,7 @@ const ServerHeader = ({ server, role }: ServerHeaderProps) => {
           <ChevronDown className="h-5 w-5 ml-auto" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 text-xs font-medium text-black dark:text-neutral-400 space-y-[2px]">
+      <DropdownMenuContent className="w-56 text-sm font-medium text-black dark:text-neutral-400 space-y-[2px]">
         {isModerator && (
           <DropdownMenuItem
             className="text-indigo-600 dark:text-indigo-400 px-3 py-2 text-sm cursor-pointer"
@@ -68,20 +68,31 @@ const ServerHeader = ({ server, role }: ServerHeaderProps) => {
           </DropdownMenuItem>
         )}
         {isModerator && (
-          <DropdownMenuItem className="px-3 py-2 text-sm cursor-pointer">
+          <DropdownMenuItem
+            className="px-3 py-2 text-sm cursor-pointer"
+            onClick={() => {
+              onOpen("createChannel", { server: server });
+            }}
+          >
             Create Channel
             <PlusCircle className="h-4 w-4 ml-auto" />
           </DropdownMenuItem>
         )}
         {isModerator && <DropdownMenuSeparator />}
         {isAdmin && (
-          <DropdownMenuItem className="text-rose-700 px-3 py-2 text-sm cursor-pointer">
+          <DropdownMenuItem
+            className="text-rose-700 px-3 py-2 text-sm cursor-pointer"
+            onClick={() => onOpen("deleteServer", { server: server })}
+          >
             Delete Server
             <Trash className="h-4 w-4 ml-auto" />
           </DropdownMenuItem>
         )}
         {!isAdmin && (
-          <DropdownMenuItem className="text-rose-700 px-3 py-2 text-sm cursor-pointer">
+          <DropdownMenuItem
+            className="text-rose-700 px-3 py-2 text-sm cursor-pointer"
+            onClick={() => onOpen("leaveServer", { server: server })}
+          >
             Leave Server
             <LogOut className="h-4 w-4 ml-auto" />
           </DropdownMenuItem>
